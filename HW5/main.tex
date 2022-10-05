@@ -1,0 +1,206 @@
+\documentclass[a4paper,11pt,oneside,article]{memoir}
+% lidt marginer
+\setlrmarginsandblock{3cm}{*}{1}
+\setulmarginsandblock{3cm}{*}{1}
+\setheadfoot{2cm}{\footskip}          
+\checkandfixthelayout[nearest]
+
+\setlength{\parindent}{0pt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\renewcommand\danishhyphenmins{22}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{icomma}
+\usepackage{gensymb}
+\usepackage{bm, amsmath,mathdots, amssymb, mathtools}
+\usepackage[normalem]{ulem}
+\usepackage{array, booktabs, tabularx}
+\usepackage{graphicx, caption, subfig, xcolor}
+
+
+\captionsetup{font=small,labelfont=bf}
+\graphicspath{ {./images/} }
+
+\makepagestyle{mypagestyle}
+\copypagestyle{mypagestyle}{empty}
+\makeoddhead{mypagestyle}{Nurtdinov Damir 31.05.2002\\d.nurtdinov@innopolis.university}{\quad}{{October 2022}\\Theoretical Mechanics: HW5}
+
+\makeheadrule{mypagestyle}{\textwidth}{\normalrulethickness}
+\makeoddfoot{mypagestyle}{}{\thepage}{}
+
+\pagestyle{mypagestyle}
+
+\usepackage{enumerate}
+
+\usepackage[output-decimal-marker={,}]{siunitx}
+
+\usepackage[hidelinks=true]{hyperref}
+
+\title{Theoretical Mechanics HW5}
+\author{Дамир Нуртдинов}
+\date{September 2022}
+
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+\begin{document}
+
+\section*{Task 1}
+\subsection{Problem:}
+The legend about the sniper.\\
+1. Find $\alpha$ which is needed to shoot the officer.\\
+2. What the max height of cargo ship can be to make this shot?\\
+3. Find $\alpha$ taking into consideration air resistance: $F_c(v^2) = -kv\Vec{v}$\\
+$L = 1500$m, $m = 13.6$g, $k=1.3 * 10^{-5}$, $v_0 = 870$m/s, $g = 9.81 m/s^2$
+\subsection{Solution:}
+\underline{Research object:} Bullet\\
+\underline{Motion:} Translatory\\
+\underline{Condition:}\\
+Initial: $x_0 = 0$, $\dot x_0 = v_0$, $t=0$;\\
+"final": $x_f = L$, $\dot x_f = v_0$, $t=?$;\\
+"H": $x_H = L/2$, $\dot x_H = ?$, $t=?$;\\
+\underline{Force analysis:}\\
+For 1-2 questions: $m\Vec{g}$\\
+For the 3rd question: $\Vec{F_c}$, $m\Vec{g}$\\
+\underline{Solution:}\\
+1. There 2 different $\alpha$ for the sniper to shot the officer. One of the angle can be found using school formula of ballistics :
+\begin{equation}
+    \begin{split}
+        L = \frac{v^2_0 sin(2\alpha)}{g}\\
+        \alpha = \arcsin(\frac{gL}{v^2_0})\\
+        \alpha_1 \approx 0.556982 \degree\\
+        \alpha_2 = (180 - \alpha_1*2)/2 \approx 89.443\degree
+    \end{split}
+\end{equation}
+2. Max height of the ship is at the centre of river (middle of distance L) and also can be calculated using school formula:
+\begin{equation}
+    \begin{split}
+        H = \frac{v^2_0 sin^2(\alpha)}{2g}\\
+        \alpha_1: H_{max} \approx 3.6455583m\\
+        \doubleunderline{\alpha_2: H_{max} \approx 38574.336m}\\
+    \end{split}
+\end{equation}
+3. This task requires more efforts, I wrote the 2nd Newton's law and projections on coordinates.
+\begin{equation}
+    \begin{split}
+        x: ma_x = -F_c cos(\alpha) = -k v^2\\
+        y: ma_y = -mg-F_c sin(\alpha)
+    \end{split}
+\end{equation}
+The equation above can be rewritten in differential form:\\
+\begin{equation}
+    \begin{cases}
+    \frac{dV_x}{dt} = - \frac{k}{m}\sqrt{V^2_x + V^2_y}V_x\\
+    \frac{dV_y}{dt} = - g - \frac{k}{m}\sqrt{V^2_x + V^2_y}V_y\\
+\end{cases}
+\end{equation}
+Numerical calculation of the system of nonlinear differential equations gives:
+\begin{equation}
+    \begin{split}
+        \doubleunderline{\alpha_1 \approx 1.86784\degree}\\
+        \doubleunderline{\alpha_2 \approx 68.65180\degree}\\
+    \end{split}
+\end{equation}
+All calculations can be found in colab:
+Link: \url{https://colab.research.google.com/drive/1IQBCqrKOnkBtLquocZN67vyyrzIYXEyp?usp=sharing}\\
+Graphs for the $\alpha_1$:\\
+\includegraphics[width=14cm]{images/fc_first.png}\\
+Graphs for the $\alpha_2$:\\
+\includegraphics[width=14cm]{images/fc.png}\\
+
+\section*{Task 2}
+\subsection{Problem:}
+A particle M is moving inside of the cylindrical channel of moving object A with radius $r$.\\
+Determine the equation of relative motion $x=f(t)$. Find the pressure force the particle acting on the channel wall. I consider the case, when M starts its motion from the center of A.\\
+1. Simulate the mechanism.\\
+2. Show all the accelerations and forces.\\
+3. Plot the $x(t)$ till point won't leave the channel.\\
+4. plot $N(t)$. \\
+$m = 0.02$, $\omega = \pi$, $r=0.5$\\
+\subsection{Solution:}
+\underline{Research object:} System of particle M and object A. \\
+\underline{Motion:} A – rotational, M - translatory\\
+\underline{Condition:}\\
+Initial: $x_0 = 0$, $\dot x_0 = 0.4$, $t=0$;\\
+"final": $x_f = r$, $\dot x_f = ?$, $t=?$;\\
+\underline{Force analysis:}\\
+known: G\\
+unknown: N, $\Phi^c_e$,  $\Phi_{cor}$\\
+\underline{Solution:}\\
+1. The simulation is available here:\\
+Link: \url{https://www.geogebra.org/m/wd7qdhks}\\
+2. All forces and accelerations shown in simulation.\\
+3. To find $x(t)$ I used Newton's Second law:
+\begin{equation}
+    \begin{split}
+        m\Vec{a} = \Vec{\Phi^c_e} + \Vec{G} + \Vec{\Phi_{cor}} + \Vec{N}\\
+        x: m\ddot x = \Phi^c_e + Gsin(\omega t) = m\omega^2x+mgsin(\omega t)\\
+    \end{split}
+\end{equation}
+The full solution of this differential equation is:
+\begin{equation}
+    x = C_1 e^{\omega t} +  C_2 e^{-\omega t} + A sin(\omega t)+ B cos(\omega t)
+\end{equation}
+From (6) I got that $B=0$ and $A = -\frac{g}{2\omega^2}$\\
+To calculate $C_1, C_2$ I substituted initial conditions and got:\\
+\begin{equation}
+\begin{cases}
+        C_1 + C_2 = 0\\
+        \omega(C_1-C_2)- \frac{g}{2\omega} = 0.4\\
+\end{cases}
+\begin{cases}
+        C_2 = (-0.4 - \frac{g}{2\omega})\frac{1}{2\omega}\\
+        C_1 = -C_2\\
+\end{cases}
+\end{equation}
+The full equation of motion is:
+\begin{equation}
+    \doubleunderline{ x = C_1 e^{\omega t} +  C_2 e^{-\omega t} + A sin(\omega t)+ B cos(\omega t)}
+\end{equation}\\
+Plot is here:\\ 
+\includegraphics[width=14cm]{images/task2x.png}\\
+4. N was calculated with Newton's Second law but in direction which is perpendicular to $x$ of particle.\\
+\begin{equation}
+    \begin{split}
+        0 = N + \Phi_cor - Gcos(\omega t)\\ 
+        N =  2mV_{rel}\omega - mgcos(\omega t)\\
+    \end{split}
+\end{equation}
+\includegraphics[width=14cm]{images/task2n.png}\\
+
+\section*{Task 2}
+\subsection{Problem:}
+There are 3 weights connected with an ideal string. When 1 does down on $l$ = 1 meter the system shifts on distance S. Find the S\\
+$m_1 = 20$ kg, $m_2 = 15$ kg, $m_3 = 10$ kg, $m = 100$ kg\\
+\subsection{Solution:}
+\underline{Research object:} System of 3 weights and prism ABC. \\
+\underline{Motion:} 1,2,3, ABC – translatory\\
+\underline{Condition:}\\
+Initial: $x_0 = 0$, $\dot x_0 = 0$, $t=0$;\\
+"final": $x_f = ?$, $\dot x_f = ?$, $t=?$;\\
+\underline{Force analysis:}\\
+Look at the picture:\\
+\includegraphics[width=14cm]{images/ex3.png}\\
+known: P1, P2, P3, P, N1, N2, N3, N\\
+unknown: T1, T'2, T2, T3\\
+\underline{Solution:}\\
+Second Newton's law: 
+\begin{equation}
+    \begin{split}
+        m\ddot x_c = 0 = P1 + P2 + P3+  P+ N1+ N2+ N3+ N +T1+ T'2+ T2+ T3 \\ 
+        m\dot x_c = C_1, C_1 = 0\\
+        mx_c = C_2, C_2 = 0\\
+    \end{split}
+\end{equation}
+The center of mass of the system has not moved, but suppose the ABC moved to the left on S. 
+Conditions for bodies:\\
+initial: $x_1$, $x_2$, $x_3$, $x_{ABC}$\\
+final: $x_1-S$, $x_2-S+l$, $x_3-s + lcos(60\degree)$, $x_{ABC}-S$\\
+\begin{equation}
+    \begin{split}
+        \frac{m_1x_1 + m_2x_2+m3x_3+mx_{ABC}}{m_1+m_2+m_3+m} = \\\frac{m_1(x_1-s) + m_2(x_2-S+l)+m3(x_3-S+lcos(60\degree))+m(x_{ABC}-S)}{m_1+m_2+m_3+m}\\ 
+        \doubleunderline{S = \frac{l(m_2 + m_3/2)}{m_1+m_2+m_3+m} = \approx 0.138 m}\\
+    \end{split}
+\end{equation}
+\end{document}
