@@ -1,0 +1,359 @@
+\documentclass[a4paper,11pt,oneside,article]{memoir}
+% lidt marginer
+\setlrmarginsandblock{3cm}{*}{1}
+\setulmarginsandblock{3cm}{*}{1}
+\setheadfoot{2cm}{\footskip}          
+\checkandfixthelayout[nearest]
+
+\setlength{\parindent}{0pt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\renewcommand\danishhyphenmins{22}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{icomma}
+\usepackage{bm, amsmath,mathdots, amssymb, mathtools}
+\usepackage[normalem]{ulem}
+\usepackage{array, booktabs, tabularx}
+\usepackage{graphicx, caption, subfig, xcolor}
+
+\captionsetup{font=small,labelfont=bf}
+\graphicspath{ {./images/} }
+
+\makepagestyle{mypagestyle}
+\copypagestyle{mypagestyle}{empty}
+\makeoddhead{mypagestyle}{Nurtdinov Damir 31.05.2002\\d.nurtdinov@innopolis.university}{\quad}{{September 2022}\\Theoretical Mechanics: HW1}
+
+\makeheadrule{mypagestyle}{\textwidth}{\normalrulethickness}
+\makeoddfoot{mypagestyle}{}{\thepage}{}
+
+\pagestyle{mypagestyle}
+
+\usepackage{enumerate}
+
+\usepackage[output-decimal-marker={,}]{siunitx}
+
+\usepackage[hidelinks=true]{hyperref}
+\title{Theoretical Mechanics HW1}
+\author{Дамир Нуртдинов}
+\date{September 2022}
+
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+\begin{document}
+
+\section*{Task 1}
+
+\subsection{Problem:}
+You should find $y(x), \overrightarrow{v}, \overrightarrow{a}, \overrightarrow{a_n},\overrightarrow{a_\tau}, \kappa$ (Osculating circle) for \\
+$t \in [-5,5]$.
+\begin{equation}
+\begin{cases}
+        x = 3t
+        \\
+        y = 4t^2 + 1
+\end{cases}
+\end{equation}
+Plot them
+\subsection{Solution:}
+(1) Let me derive the $y(x)$. I just express $t$ through $x$ and substitute it to $y = 4t^2 + 1$ \\
+I obtain: \\
+\begin{equation*}
+ \doubleunderline{y(x) = \frac{4}{9} x^2 +1}
+\end{equation*}
+\\
+(2) To get $\overrightarrow{v}$ I should take derivatives of $x(t)$ and $y(t)$ with respect to $t$:
+\begin{equation*}
+ v_x = \dot{x} = 3
+\end{equation*}
+\begin{equation*}
+ v_y = \dot{y} = 8t
+\end{equation*}
+
+\begin{equation*}
+\doubleunderline{
+\overrightarrow{v}=
+    \begin{pmatrix}
+    3\\
+    8t
+    \end{pmatrix}
+}
+\end{equation*}
+\begin{equation*}
+ v = \sqrt{9+64t^2}
+\end{equation*}
+
+(3) To get $\overrightarrow{a}$ I should take derivatives of $v_x(t)$ and $v_y(t)$ with respect to $t$:
+\begin{equation*}
+ a_x = \dot{v_x} = 0
+\end{equation*}
+\begin{equation*}
+ a_y = \dot{v_y} = 8
+\end{equation*}
+
+\begin{equation*}
+\doubleunderline{
+\overrightarrow{a}=
+    \begin{pmatrix}
+    0\\
+    8
+    \end{pmatrix}
+}
+\end{equation*}
+
+(4) To get $\overrightarrow{a_n}$ and $\overrightarrow{a_\tau}$ I should find their lengths and, knowing that they are perpendicular to each other and $\overrightarrow{a_\tau}$ is tangent to $y(x) = \frac{4}{9} x^2 +1$, I can find and plot them:
+
+\begin{equation*}
+    a_\tau = \frac{\overrightarrow{a} \cdot \overrightarrow{v}}{|\overrightarrow{v}|} = \frac{64t}{\sqrt{9+64t^2}}
+\end{equation*}
+
+\begin{equation*}
+    a_n = \frac{\overrightarrow{a} \times \overrightarrow{v}}{|\overrightarrow{v}|} = \frac{24}{\sqrt{9+64t^2}}
+\end{equation*}
+$a_n$ directed to the center of curvature\\
+To calculate coordinates of $\overrightarrow{a_n}$ I found $y'(x) = \frac{8}{9}x$ – it is a slope and tangent line has the same slope. Knowing slope and the length of $\overrightarrow{a_n}$, it is easy to find its coordinates. 
+\begin{equation*}
+    \begin{cases}
+        \sqrt{x^2_{a_n} + y^2_{a_n}} = a_n
+        \\
+        \frac{y_{a_n}}{x_{a_n}} = y'(x)
+\end{cases}
+\end{equation*}
+Solving the equation I get:
+
+\begin{equation*}
+\doubleunderline{
+    \overrightarrow{a_n} = 
+    \begin{pmatrix}
+        \frac{64t}{\frac{64}{3}t^2 +3}
+        \\
+        \frac{8}{3}t \frac{64t}{\frac{64}{3}t^2 +3}
+    \end{pmatrix}
+}
+\end{equation*}
+
+\begin{equation}
+    \overrightarrow{a_\tau} = \overrightarrow{a} - \overrightarrow{a_n} = 
+    \doubleunderline{
+        \begin{pmatrix}
+            -\frac{64t}{\frac{64}{3}t^2 +3}
+            \\
+            8-\frac{8}{3}t \frac{64t}{\frac{64}{3}t^2 +3}
+        \end{pmatrix}
+    }
+\end{equation}
+
+(5) The osculating circle $\kappa$ is tangent to $y(x)$ and its radius is equal to:
+\begin{equation*}
+\doubleunderline{
+    \rho = \frac{v^2}{a_n} = \frac{(9+64t^2)^{1.5}}{24}
+}
+\end{equation*}
+\\
+\subsection{Plotting:}
+
+Link : \url{https://www.geogebra.org/m/wuss3jqt}
+
+\section*{Task 2}
+
+\subsection{Problem:}
+$\omega_{OA} = 1 rad/s$, $\epsilon_{OA} = 0$, $OA = OP = 25$, $AB = 80$, $AC = 20$ \\ 
+(1) Simulate the mechanism \\
+(2) Find velocities for points B, C\\
+(3) Find accelerations for points B, C \\
+(4) Plot
+\subsection{Solution:}
+(1)To simulate the model I found coordinates of points A, B, C with respect to $t$:\\
+\begin{equation*}
+A:
+\doubleunderline{
+    \begin{cases}
+        x_A = OAcos(\omega_{OA}t)
+        \\
+        y_A = OAsin(\omega_{OA}t)
+\end{cases}
+}
+\end{equation*}
+It is much harder to find B, but I did.\\
+\begin{equation*}
+B:
+    \begin{cases}
+        (x_B-x_A)^2 + (y_B-y_A)^2 = AB^2
+        \\
+        y_B = \frac{x_B}{\sqrt{3}} + 25
+\end{cases}\\
+\end{equation*}
+
+\begin{equation*}
+    \frac{4}{3}x_B+x_B(\frac{50\sqrt{3}-2\sqrt{3}y_A}{3} - 2x_A) - 50y_A - 5150 = 0
+\end{equation*}
+\begin{equation*}
+    D = (\frac{50\sqrt{3}-2\sqrt{3}y_A}{3} - 2x_A)^2 + \frac{16}{3}(50y_A + 5150)
+\end{equation*}
+
+    \begin{equation*}
+    \doubleunderline{
+        x_B= \frac{2x_A - \frac{50\sqrt{3}-2\sqrt{3}y_A}{3} - \sqrt{D}}{8/3}
+        }
+    \end{equation*}
+
+    \begin{equation*}
+    \doubleunderline{
+        y_B= \frac{x_B}{\sqrt{3}}+25
+        }
+    \end{equation*}
+\\
+C point was found with vectors:
+\begin{equation*}
+    \overrightarrow{OC} = \overrightarrow{OB}+\frac{BC}{|\overrightarrow{BA}|}\overrightarrow{BA} = \begin{pmatrix}
+            \frac{1}{4}x_B + \frac{3}{4}x_A
+            \\
+            \frac{1}{4}y_B + \frac{3}{4}y_A
+    \end{pmatrix}
+\end{equation*}\\
+
+\begin{equation*}
+\doubleunderline{
+    x_C = \frac{1}{4}x_B + \frac{3}{4}x_A
+    }
+\end{equation*}
+\\
+\begin{equation*}
+\doubleunderline{
+    y_C = \frac{1}{4}y_B + \frac{3}{4}y_A
+    }
+\end{equation*}
+\\
+The simulation is available by link : \url{https://www.geogebra.org/m/z833xxxj}
+\\ \\
+(2) The velocities are just time-derivatives, so:
+\begin{equation*}
+    v_{Bx} = \dot x_B =
+\end{equation*}
+\begin{equation*}
+\doubleunderline{
+     =\frac{-75sin(t)+25\sqrt{3}cos(t)}{4} - \frac{5625cos(t)-1875sin(2t)+1875\sqrt{3}sin(t)+1875\sqrt{3}cos(2t)}{2\sqrt{262200+45000sin(t)-15000\sqrt{3}cos(t)+7500\sqrt{3}sin(2t)+15000cos^2(t)}}
+     }\\
+\end{equation*}
+\begin{equation*}
+\doubleunderline{
+    v_{By} = \dot y_B = \frac{\dot x_B}{\sqrt{3}}
+}
+\end{equation*}
+\\
+For point C they are:
+\begin{equation*}
+\doubleunderline{
+    v_{Cx} = \dot x_C = \frac{1}{4}(v_{Bx}-75sin(t))
+    }
+\end{equation*}
+\begin{equation*}
+\doubleunderline{
+    v_{Cy} = \dot y_C = \frac{1}{4}(v_{By}+75cos(t))
+    }
+\end{equation*}
+\\
+(3) The same algorithm as above – just (ha-ha, da-da, prosto kak dva pal'ca ob asfal't) find time-derivatives:\\
+First, let me denote $(5625cos(t)-1875sin(2t)+1875\sqrt{3}sin(t)+1875\sqrt{3}cos(2t))$ as $f$, and $(2\sqrt{262200+45000sin(t)-15000\sqrt{3}cos(t)+7500\sqrt{3}sin(2t)+15000cos^2(t)})$ as $l$, their derivatives $(-5625sin(t)-3750cos(2t)+1875\sqrt{3}cos(t)-3750\sqrt{3}sin(2t))$ as $fprime$ and $(\frac{-4500cos(t)+15000\sqrt{3}sin(t)+15000\sqrt{3}cos(2t)-15000sin(2t)}{\sqrt{262200-45000sin(t)-15000\sqrt{3}cos(t)+7500\sqrt{3}sin(2t)+15000cos^2(t)}})$ as $lprime$ so:
+\begin{equation*}
+\doubleunderline{
+    a_{Bx} = \dot v_{Bx} = - \frac{75cos(t)+25\sqrt{3}sin(t)}{4}-\frac{l*fprime-f*lprime}{l^2}
+}
+\end{equation*}
+\begin{equation*}
+    \doubleunderline{
+        a_{By} = \dot v_{By} = \frac{\dot v_{Bx}}{\sqrt{3}}
+    }
+\end{equation*}
+Accelerations of point C is easier, because I already calculated neccessery derivatives:
+\begin{equation*}
+    \doubleunderline{
+        a_{Cx} = \dot v_{Cx} = \frac{\dot v_{Bx} - 75 cos(t)}{4}
+    }
+\end{equation*}
+\begin{equation*}
+    \doubleunderline{
+        a_{Cy} = \dot v_{Cy} = \frac{\dot v_{By} - 75 sin(t)}{4}
+    }
+\end{equation*}
+To find $\overrightarrow{a_{\tau}}$ I calculated its length:
+\begin{equation*}
+\doubleunderline{
+    a_{\tau} = \frac{\overrightarrow{a}{\overrightarrow{V}}}{{|\overrightarrow{V}|}} = \frac{a_{Cx}*v_{Cx} + a_{Cy}*v_{Cy}}{\sqrt{v^2_{Cx} + v^2_{Cy}}} 
+    }
+\end{equation*}
+and it is parallel with $v_C$.\\
+$\overrightarrow{a_n}$ is perpendicular to the $\overrightarrow{a_{\tau}}$ and can be found by:
+\begin{equation*}
+\doubleunderline{
+    \overrightarrow{a_n} = \overrightarrow{a} - \overrightarrow{a_{\tau}}
+    }
+\end{equation*}
+
+\section*{Task 3}
+
+\subsection{Problem:}
+The mechanism consists of stepped wheels 1, 2, 3, which are in contact and connected by a belt drive, a rack 4 and a weight 5, tied to the end of a thread, wound on one of the wheels. \\
+The radii of steps of wheels are equal accordingly: at wheel 1 - $r_1$ = 2 cm, $R_1$ = 4 cm, at wheel 2 - $r_2$ = 6 cm, $R_2$ = 8 cm, at wheel 3 - $r_3$ = 12 cm, $R_3$ = 16 cm. Points A, B and C are located on the rims of the wheels.\\
+The law of motion of the load is given: $s_5 = t^3-6t$ (cm).\\
+The positive direction is downward.\\
+Find ($t = 2$):\\
+1. velocities of A,C;\\
+2. angular acc of 3;\\
+3. acc of B and 4;\\
+
+\subsection{Solution:}
+(1)\\
+\begin{equation*}
+    \begin{split}
+            & V_C = \omega_3 * R_3; \\
+            & V_{s_5} = \dot s_5  = \omega_3 * r_3; \\
+            &
+            \doubleunderline{
+             V_C = \dot s_5 \frac{R_3}{r_3} = (3t^2 - 6) \frac{16}{12} = 8;
+            }
+    \end{split}
+\end{equation*}
+Same logic with A:
+\begin{equation*}
+    \begin{split}
+            & V_B = V_C \frac{R_2}{r_2}; \\
+            & 
+            \doubleunderline{
+            V_A = V_C \frac{R_2}{r_2} \frac{R_1}{r_1} = \frac{64}{3} 
+            }
+    \end{split}
+\end{equation*}
+(2)
+\begin{equation*}
+\doubleunderline{
+    \epsilon_3 = \dot \omega_3 = \frac{\ddot s_5}{r_3} = \frac{6t}{12} = 1;
+}
+\end{equation*}
+(3)
+I consider the point B
+\begin{equation*}
+    \begin{split}
+            & V_B = \dot s_5\frac{R_3}{r_3} \frac{R_2}{r_2}; \\
+            & a_n = \frac{V^2_B}{R_2} = \frac{128}{9};\\
+            & \epsilon_B = \dot \omega_B = \frac{V_B}{R_2} = \ddot s_5\frac{R_3}{r_2 r_3}; \\
+            & a_{\tau} = \epsilon_B R_2 = \ddot s_5\frac{R_2 R_3}{r_2 r_3} = \frac{64}{3};\\
+            &
+            \doubleunderline{
+            a = \sqrt{a^2_n + a^2_{\tau}} \approx 25.64;
+            }
+    \end{split}
+\end{equation*}
+Here I consider 4: 
+\begin{equation*}
+    \begin{split}
+            & a_4 = \epsilon_A R_1;\\
+            & \epsilon_A = \dot \omega_A = \frac{\dot V_B}{r_1} = \ddot s_5 \frac{R_3 R_2}{r_1 r_2 r_3};\\
+            &
+            \doubleunderline{
+            a_4 = \ddot s_5 \frac{R_3 R_2 R_1}{r_1 r_2 r_3} \approx 42.67;
+            }
+    \end{split}
+\end{equation*}
+\end{document}
