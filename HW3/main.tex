@@ -1,0 +1,187 @@
+\documentclass[a4paper,11pt,oneside,article]{memoir}
+% lidt marginer
+\setlrmarginsandblock{3cm}{*}{1}
+\setulmarginsandblock{3cm}{*}{1}
+\setheadfoot{2cm}{\footskip}          
+\checkandfixthelayout[nearest]
+
+\setlength{\parindent}{0pt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\renewcommand\danishhyphenmins{22}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{icomma}
+\usepackage{gensymb}
+\usepackage{bm, amsmath,mathdots, amssymb, mathtools}
+\usepackage[normalem]{ulem}
+\usepackage{array, booktabs, tabularx}
+\usepackage{graphicx, caption, subfig, xcolor}
+
+
+\captionsetup{font=small,labelfont=bf}
+\graphicspath{ {./images/} }
+
+\makepagestyle{mypagestyle}
+\copypagestyle{mypagestyle}{empty}
+\makeoddhead{mypagestyle}{Nurtdinov Damir 31.05.2002\\d.nurtdinov@innopolis.university}{\quad}{{September 2022}\\Theoretical Mechanics: HW1}
+
+\makeheadrule{mypagestyle}{\textwidth}{\normalrulethickness}
+\makeoddfoot{mypagestyle}{}{\thepage}{}
+
+\pagestyle{mypagestyle}
+
+\usepackage{enumerate}
+
+\usepackage[output-decimal-marker={,}]{siunitx}
+
+\usepackage[hidelinks=true]{hyperref}
+\title{Theoretical Mechanics HW1}
+\author{Дамир Нуртдинов}
+\date{September 2022}
+
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+\begin{document}
+
+\section*{Task 1}
+\subsection{Problem:}
+$OM = s_r(t) = 6 \pi t^2$\\
+$\phi (t) = \frac{\pi t^3}{6}$\\
+(1) Simulate the mechanism\\
+(2) Find absolute, transport and relative velocities and accelerations for $M$\\
+(3) Find $t$, when $M$ reaches $O$ \\
+(4) Put on simulation the previous statements
+
+
+
+The universe is immense and it seems to be homogeneous, 
+in a large scale, everywhere we look at.
+
+\includegraphics{images/vel_coord.png}
+
+
+There's a picture of a galaxy above
+
+\subsection{Solution:}
+I denoted the center of $OA$ as $C$\\
+(1) and (4)  The simulation is available by the\\ Link
+\url{https://www.geogebra.org/m/hhxbcrb6}\\
+(2) \begin{equation}
+\begin{split}
+    \omega = \dot \phi(t)\\
+    \doubleunderline{
+    V_M ^{tr} = \omega O_2A, V_M ^{tr} \perp O_2A
+    }\\
+    \doubleunderline{
+    V_M ^{rel} = \dot s_r(t) = 12\pi t, V_M ^{rel} \perp CM
+    }\\
+        \doubleunderline{
+    \overrightarrow{V_M} = \overrightarrow{V_M ^{tr}} + \overrightarrow{V_M ^{rel}}
+    }\\
+\end{split}
+\end{equation}
+The logic for accelerations is the same. There is no Coriolis acceleration, because semicirlce $D$ does not have angular velocity ($\overrightarrow{V_A} = \overrightarrow{V_O}$)\\
+\begin{equation}
+\begin{split}
+    \doubleunderline{
+    a_{tr} ^{n} = \omega ^2 O_2A,  \overrightarrow{a_{tr} ^{n}} || O_2A
+    }\\
+    \epsilon = \ddot \phi = \pi t
+    \\
+    \doubleunderline{
+    a_{tr} ^{\tau} = \epsilon O_2A, \overrightarrow{a_{tr} ^{\tau}} || \overrightarrow{V_{tr}}
+    }\\
+    \overrightarrow{a_M ^{rel}} =\overrightarrow{a_{rel} ^{n}} + \overrightarrow{a_{rel} ^{\tau}}\\
+    \doubleunderline{
+    a_{rel} ^{n} = \frac{V_{rel}^2}{R},  \overrightarrow{a_{rel} ^{n}} || CM
+    }\\
+    \doubleunderline{
+    a_{rel} ^{\tau} = \ddot s_r = 12\pi, \overrightarrow{a_{rel} ^{\tau}} || \overrightarrow{V_{rel}}
+    }\\
+    \doubleunderline{
+     \overrightarrow{a_M ^{tr}} =\overrightarrow{a_{tr} ^{n}} + \overrightarrow{a_{tr} ^{\tau}}
+    }
+\end{split}
+\end{equation}
+
+(3) Here I just solved a simple equation:
+\begin{equation}
+\begin{split}
+    s_r (t) = \phi (t) R\\
+    6 \pi t^2 = \frac{\pi t^3}{6} R\\
+    \doubleunderline{
+    t = \sqrt{\frac{R}{6}}
+    }
+\end{split}
+\end{equation}
+
+
+\section*{Task 2}
+\subsection{Problem:}
+$OM = s_r(t) = 75 \pi (0.1 + 0.3t^2)$\\
+$\phi (t) = 2t - 0.3t^2$\\
+(1) Simulate the mechanism\\
+(2) Find absolute, transport and relative velocities and accelerations for $M$\\
+(3) Find $t$, when $M$ reaches $O$ second time\\
+(4) Put on simulation the previous statements
+\subsection{Solution:}
+
+
+I denoted the center of the circle as $O_2$\\
+(1) and (4)  The simulation is available by the\\ Link
+\url{https://www.geogebra.org/m/pzvphvd3}\\
+(2) \begin{equation}
+\begin{split}
+    \omega = \dot \phi(t)\\
+    \doubleunderline{
+    V_M ^{tr} = \omega O_1M, V_M ^{tr} \perp O_1M
+    }\\
+    \doubleunderline{
+    V_M ^{rel} = \dot s_r(t) = 75\pi (0.1+0.6t), V_M ^{rel} \perp O_2M
+    }\\
+        \doubleunderline{
+    \overrightarrow{V_M} = \overrightarrow{V_M ^{tr}} + \overrightarrow{V_M ^{rel}}
+    }\\
+\end{split}
+\end{equation}
+The logic for accelerations is the same. There is Coriolis acceleration\\
+\begin{equation}
+\begin{split}
+    \doubleunderline{
+    a_{tr} ^{n} = \omega ^2 O_1M,  \overrightarrow{a_{tr} ^{n}} || O_1M
+    }\\
+    \epsilon = \ddot \phi = -0.6
+    \\
+    \doubleunderline{
+    a_{tr} ^{\tau} = \epsilon O_1M, \overrightarrow{a_{tr} ^{\tau}} || \overrightarrow{V_{tr}}
+    }\\
+    \overrightarrow{a_M ^{rel}} =\overrightarrow{a_{rel} ^{n}} + \overrightarrow{a_{rel} ^{\tau}}\\
+    \doubleunderline{
+    a_{rel} ^{n} = \frac{V_{rel}^2}{R},  \overrightarrow{a_{rel} ^{n}} || O_2M
+    }\\
+    \doubleunderline{
+    a_{rel} ^{\tau} = \ddot s_r = 75\pi 0.6t, \overrightarrow{a_{rel} ^{\tau}} || \overrightarrow{V_{rel}}
+    }\\
+    \doubleunderline{
+    \overrightarrow{a_M ^{cor}} = 2 \omega \times  \overrightarrow{V_{rel}}
+    }
+    \\
+    \doubleunderline{
+     \overrightarrow{a_M ^{tr}} =\overrightarrow{a_{tr} ^{n}} + \overrightarrow{a_{tr} ^{\tau}} + \overrightarrow{a_{M} ^{cor}}
+     }
+\end{split}
+\end{equation}
+
+(3) Here I just solved a simple equation:
+\begin{equation}
+\begin{split}
+    s_r (t) = \phi (t) R\\
+    75 \pi (0.1 + 0.3t^2) = 2\pi R\\
+    \doubleunderline{
+    t = \frac{-15+\sqrt{225+720R}}{90} \approx 1.17704 s
+    }
+\end{split}
+\end{equation}
+\end{document}
