@@ -1,0 +1,168 @@
+\documentclass[a4paper,11pt,oneside,article]{memoir}
+% lidt marginer
+\setlrmarginsandblock{3cm}{*}{1}
+\setulmarginsandblock{3cm}{*}{1}
+\setheadfoot{2cm}{\footskip}          
+\checkandfixthelayout[nearest]
+
+\setlength{\parindent}{0pt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\renewcommand\danishhyphenmins{22}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{icomma}
+\usepackage{gensymb}
+\usepackage{bm, amsmath,mathdots, amssymb, mathtools}
+\usepackage[normalem]{ulem}
+\usepackage{array, booktabs, tabularx}
+\usepackage{graphicx, caption, subfig, xcolor}
+
+
+\captionsetup{font=small,labelfont=bf}
+\graphicspath{ {./images/} }
+
+\makepagestyle{mypagestyle}
+\copypagestyle{mypagestyle}{empty}
+\makeoddhead{mypagestyle}{Nurtdinov Damir 31.05.2002\\d.nurtdinov@innopolis.university}{\quad}{{September 2022}\\Theoretical Mechanics: HW4}
+
+\makeheadrule{mypagestyle}{\textwidth}{\normalrulethickness}
+\makeoddfoot{mypagestyle}{}{\thepage}{}
+
+\pagestyle{mypagestyle}
+
+\usepackage{enumerate}
+
+\usepackage[output-decimal-marker={,}]{siunitx}
+
+\usepackage[hidelinks=true]{hyperref}
+\title{Theoretical Mechanics HW1}
+\author{Дамир Нуртдинов}
+\date{September 2022}
+
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+\begin{document}
+
+\section*{Task 1}
+\subsection{Problem:}
+Determine reaction forces and the forces in the interim pins of the composite stud. $P_1 = 12$, $P_2 = 18$, $M_1 = 36$,$q = 1.4$ 
+\subsection{Solution:}
+"For the system to be in static equilibrium, there must be three rods: AC, CE, EF" – A. Maloletov.\\
+\underline{Research object:} system of 3 rods: AC, CE, EF\\
+Here is the picture:\\
+\includegraphics[width=15cm]{images/pic1.png}\\
+\underline{Method:} static\\
+\underline{Body is fixed:}\\
+A – Roller support, $R_A$ - perpendicular to it floor \\
+B – Pin connection, $R_x$, $R_y$\\
+C – Rotational joint, $R_x$, $R_y$\\
+D – Roller support, $R_y$\\
+E – Rotational joint, $R_x$, $R_y$\\
+F – Roller support, $R_y$\\
+The next step was to draw the reactions:\\
+\includegraphics[width=15cm]{images/pic2.jpg}\\
+Where $Q_1 = 3q$, $Q_2 = 2.5q$, $Q_3 = 2q$ – representation of a distributed force as a 3 forces. There is no $R^B_x$ because we consider AC as one rigid body, it has internal horizontal reactions, but they compensate each other. \\
+\underline{Force analysis:}\\
+Known: $P_1$, q, M1, $P_2$\\
+Unknown: $R_A$, $R^B_y$, $R^C_x$, $R^C_y$, $R^D_y$, $R^E_x$, $R^E_y$, $R^F_y$.\\
+\underline{Solution:}\\
+I started from stud EF:\\
+\begin{equation}
+    \begin{cases}
+    ox: R^E_x - P_2 cos(60\degree) = 0\\
+    oy: R^E_y - P_2 sin(60\degree) + R^F_y\\
+    M_E: -M_1 - P_2 sin(60\degree) 2.5 + R^F_y 4.5 = 0
+     \end{cases}
+\end{equation}
+From the system above I got:
+\begin{equation}
+    \begin{split}
+    \doubleunderline{R^F_y \approx 16.66025}\\
+    \doubleunderline{R^E_y \approx -1.07179}\\
+    \doubleunderline{R^E_x =9}
+     \end{split}
+\end{equation}
+
+The stud CE:
+\begin{equation}
+    \begin{cases}
+    ox: R^{'C}_x - R^{'E}_x = 0\\
+    oy: - R^{'C}_y - Q_2 + R^D_y - Q_3 - R^{'F}_y = 0\\
+    M_C: -Q_2 \frac{2.5}{2}+ R^D_y 2.5 - Q_3 3.5 - R^{'E}_y 4.5 = 0
+     \end{cases}
+\end{equation}
+$|R^{'C}_x| = |R^{C}_x|$ ,$|R^{'C}_y| = |R^{C}_y|$  \\
+From the system (3) I got:
+\begin{equation}
+    \begin{split}
+    \doubleunderline{R^D_y \approx 3.740778}\\
+    \doubleunderline{R^C_x = 9}\\
+    \doubleunderline{R^C_y \approx -1.487432}
+     \end{split}
+\end{equation}
+
+The stud AC:
+\begin{equation}
+    \begin{cases}
+    ox: R_A cos(45\degree) - R^{C}_x = 0\\
+    oy: R_A sin(45\degree - P_1 + R^B_y - Q_1 + R^C_y = 0\\
+    M_A: -P_1 2 + R^B_y 4 - Q_1 5.5 + R^C_y 7 =  0
+     \end{cases}
+\end{equation}
+
+From the system (5) I got:
+\begin{equation}
+    \begin{split}
+    \doubleunderline{R^B_y \approx -14.378006}\\
+    \doubleunderline{R_A = 12.7279}\\
+     \end{split}
+\end{equation}
+
+\section*{Task 2}
+\subsection{Problem:}
+Determine the reaction forces in rods supporting a  thin horizontal rectangular plate of weight G under action of force P applied along the side AB.\\
+$G = 18$,$P=30$, $a=4$, $b=4.5$, $c=3.5$
+\subsection{Solution:}
+\underline{Research object:} system of rods and horizontal rectangular plate.
+\underline{Method:} static\\
+\underline{Body is fixed:}\\
+B – Pin connection, $R_x$, $R_y$, $R_z$\\
+C – Pin connection, $R_x$, $R_y$, $R_z$\\
+D – Pin connection, $R_x$, $R_y$, $R_z$\\
+4 bottom supports with pin connections, $R_x$, $R_y$, $R_z$\\
+Here is the picture:\\
+\includegraphics[width=15cm]{images/pic3.jpg}\\
+\underline{Force analysis:}\\
+Known: $P$, $G$\\
+Unknown: $S_1$,$S_2$,$S_3$,$S_4$,$S_5$,$S_6$.\\
+\underline{Solution:}\\
+I wrote equation of moments around axis and equation of forces:
+\begin{equation}
+    \begin{cases}
+    M_{ix}:  S_3 b + S_4 sin(\alpha) b + S_5 b + G \frac{b}{2} = 0\\
+    M_{iy}: S_5 a + G\frac{a}{2}= 0 \\
+    M_{iz}: P a - S_4cos(\alpha) b = 0\\
+    ox: -S_6 cos(\alpha) - S_4 cos(\alpha) = 0\\
+    oy: S_2 cos(\beta) + P = 0\\
+    oz: -S_1 - S_6 sin(\alpha) - S_2 sin(\beta) - S_3 - S_4 sin(\alpha) - S_5- S_6 = 0\\
+    sin(\alpha) = \frac{c}{\sqrt{a^2+c^2}}\\
+    sin(\beta) = \frac{c}{\sqrt{b^2+c^2}}\\
+    cos(\beta) = \frac{b}{\sqrt{b^2+c^2}}\\
+    \end{cases}
+\end{equation}
+
+From this system I got:
+\begin{equation}
+    \begin{split}
+    \doubleunderline{S_1 \approx -14.7710257}\\
+    \doubleunderline{S_2 \approx 38.00586}\\
+    \doubleunderline{S_3 \approx -17.56233}\\
+    \doubleunderline{S_4 \approx 26.67}\\
+    \doubleunderline{S_5  = -9}\\
+    \doubleunderline{S_6 \approx -26.67}\\
+     \end{split}
+\end{equation}
+
+\end{document}
