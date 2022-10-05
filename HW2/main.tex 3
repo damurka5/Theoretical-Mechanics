@@ -1,0 +1,211 @@
+\documentclass[a4paper,11pt,oneside,article]{memoir}
+% lidt marginer
+\setlrmarginsandblock{3cm}{*}{1}
+\setulmarginsandblock{3cm}{*}{1}
+\setheadfoot{2cm}{\footskip}          
+\checkandfixthelayout[nearest]
+
+\setlength{\parindent}{0pt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[danish]{babel}
+\renewcommand\danishhyphenmins{22}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{icomma}
+\usepackage{gensymb}
+\usepackage{bm, amsmath,mathdots, amssymb, mathtools}
+\usepackage[normalem]{ulem}
+\usepackage{array, booktabs, tabularx}
+\usepackage{graphicx, caption, subfig, xcolor}
+
+\captionsetup{font=small,labelfont=bf}
+\graphicspath{ {./images/} }
+
+\makepagestyle{mypagestyle}
+\copypagestyle{mypagestyle}{empty}
+\makeoddhead{mypagestyle}{Nurtdinov Damir 31.05.2002\\d.nurtdinov@innopolis.university}{\quad}{{September 2022}\\Theoretical Mechanics: HW1}
+
+\makeheadrule{mypagestyle}{\textwidth}{\normalrulethickness}
+\makeoddfoot{mypagestyle}{}{\thepage}{}
+
+\pagestyle{mypagestyle}
+
+\usepackage{enumerate}
+
+\usepackage[output-decimal-marker={,}]{siunitx}
+
+\usepackage[hidelinks=true]{hyperref}
+\title{Theoretical Mechanics HW1}
+\author{Дамир Нуртдинов}
+\date{September 2022}
+
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+\begin{document}
+
+\section*{Task 1}
+
+\subsection{Problem:}
+(1) Simulate the mechanism;\\
+(2) Find velocities for A, B, C, D, E, F and their angular velocities;\\
+(3) Find acc. for A and B;\\
+(4) Plot
+\subsection{Solution:}
+(1) To simulate the system I find positions of all points.\\
+For A it was easy, for the rest I solved the system of equations:\\
+Let me denote $\omega_{O_1A}$ as $\omega$, and $O_1$ as origin:
+\begin{equation}
+    \begin{cases}
+    x_A = O_1A \cos(\omega t)\\
+    y_A = O_1A \sin(\omega t)\\
+    (x_A-x_B)^2 + (y_A-y_B)^2 = AB^2\\
+    (x_A-x_C)^2 + (y_A-y_C)^2 = AC^2\\
+    (x_C-x_B)^2 + (y_C-y_B)^2 = BC^2\\
+    (x_B-56)^2 + (y_B+26)^2 = O_2B^2\\
+    (x_D-x_C)^2 + (y_D-y_C)^2 = CD^2\\
+    (x_E-x_C)^2 + (y_E-y_C)^2 = CE^2\\
+    (x_E-x_D)^2 + (y_E-y_D)^2 = ED^2\\
+    (x_F-66)^2 + (y_F-41)^2 = O_3F^2\\
+    (x_F-x_E)^2 + (y_F-y_E)^2 = EF^2\\
+    y_D = 16
+    \end{cases}
+\end{equation}
+Then I found the angle when the system can exist: \\
+The first extreme position is when $A$, $B$, $O_2$ lie on one line\\
+\begin{equation}
+    \begin{cases}
+    (x)^2 + (y)^2 = O_1A^2\\
+    (x-56)^2 + (y+26)^2 = (AB+O_2B)^2
+    \end{cases}
+\end{equation}
+\begin{equation}
+\begin{split}
+    \tan{\phi_1} = \frac{y}{x}\\
+    \phi_1 \approx 122.7 \degree
+\end{split}
+\end{equation}
+The second extreme position is when $A$, $O_1$ and $B$ on the same line:\\
+\begin{equation}
+    \begin{cases}
+    \frac{x_A}{x_B} = \frac{y_A}{y_B}\\
+    x_A ^2 + y_A ^2 = 21^2\\\
+    (x_B-56)^2 + (y_B +26)^2=25^2\\
+    (x_A-x_B)^2 + (y_A - y_B)^2=54^2
+    \end{cases}
+\end{equation}
+\begin{equation}
+\begin{split}
+    \tan{\phi_2} = \frac{y_A}{x_A}\\
+    \phi_2 \approx -6.98 \degree
+\end{split}
+\end{equation}
+
+Animation is available here:\\
+Link \url{https://drive.google.com/file/d/1v227ElpF-51pBqSWI8nVU-dY8Y-i3eIo/view?usp=sharing}\\
+Colab is here:\\
+Link \url{https://drive.google.com/file/d/1QeVTCAL9XqE9UZaO5M8qW2dMAtRZ969h/view?usp=sharing}
+\\
+
+(2) To find velocities I took derivatives of coordinates of each point:\\
+\begin{equation}
+\doubleunderline{
+\begin{split}
+    V_{Ax} = -\omega * O1A * \sin{(\phi + \omega*t)}\\
+    V_{Ay} = \omega * O1A * \cos{(\phi + \omega*t)}\\
+    V_{Bx} = \dot x_B\\
+    V_{By} = \dot y_B\\
+    V_{Cx} = \dot x_C\\
+    V_{Cy} = \dot y_C\\
+    V_{Dx} = \dot x_D\\
+    V_{Dx} = \dot y_D\\
+    V_{Ex} = \dot x_E\\
+    V_{Ex} = \dot y_E\\
+    V_{Fx} = \dot x_F\\
+    V_{Fx} = \dot y_F\\
+\end{split}
+}
+\end{equation}
+
+\section*{Task 2}
+
+\subsection{Problem:}
+Find:\\
+(1) angular velocity and angular acceleration of A;\\
+(2) vel. and acc. for M point;\\
+(3) draw plots for previous statements;\\
+
+\subsection{Solution:}
+(1) Lets define the distance from $O$ to the center of a small circle ($O_A$) as $l$ and the radius of the circle as $r$\\
+\begin{equation}
+\begin{split}
+r = 20\sqrt{2-\sqrt{3}} \\
+  l = 20\sqrt{2+\sqrt{3}}
+\end{split}
+\end{equation}
+The angle between $l$ and $z$-axis is $\pi/4$\\
+The angular velocity can be expressed as $\omega = \omega_1 + \epsilon_1 t$ \\
+So, the angular velocity of A can be found knowing the velocity of the center of A and the distance from $z$-axis to $O_A$:\\
+\begin{equation}
+\begin{split}
+    V_{OA} = \omega l \frac{\sqrt{2}}{2}\\
+    a_{OA} = \epsilon_1 l \frac{\sqrt{2}}{2}\\
+    \doubleunderline{
+        \omega_A = - \frac{V_{OA}}{r}
+    }\\
+    \doubleunderline{
+        \epsilon_A = \frac{a_{OA}}{r}
+    }
+\end{split}
+\end{equation}
+(2) The velocity of M is:\\
+\begin{equation}
+    \doubleunderline{
+        V_M =  \omega_A (2r-M_0 M)
+    }
+\end{equation}
+To plot it I used rotation matrices, but before I described the motion of M with respect to $O_A$. I put the small cone to $x$-axis, then rotated around $z$-axis by $\omega t$ and rotated around new $y$-axis by $\pi/4$. I got for V:
+\begin{equation}
+\begin{split}
+\doubleunderline{
+    V_{Mx} = \frac{\sqrt{2}}{2} l \cos{(\omega t)}-\sin{(\omega t)} d \cos{(\omega_{a} t)}-\frac{\sqrt{2}}{2} d \cos{(\omega t)} \sin{(\omega_{a} t)} 
+    }\\
+    \doubleunderline{
+     V_{My} = \frac{\sqrt{2}}{2} l \sin{(\omega t)}-\sin{(\omega t)} d \cos{(\omega_{a} t)}-\frac{\sqrt{2}}{2} d \sin{(\omega t)} \sin{(\omega_{a} t)} 
+     }\\
+     \doubleunderline{
+     V_{Mz} = \frac{\sqrt{2}}{2} l+\frac{\sqrt{2}}{2} d \sin(\omega_{a} t)}
+\end{split}    
+\end{equation}
+ To find accelerations I differentiated components of $V_M$ over time (slava Bogu, geogebra umeet eto delat'):
+ 
+\begin{equation}
+\begin{split}
+\doubleunderline{
+    a_{Mx} = \dot V_{Mx}
+    }\\
+    \doubleunderline{
+     a_{My} = \dot V_{My}
+     }\\
+     \doubleunderline{
+      a_{Mz} = \dot V_{Mz}
+      }
+\end{split}    
+\end{equation}
+
+To get $\overrightarrow{a_n}$ and $\overrightarrow{a_\tau}$ I should find their lengths and, knowing that they are perpendicular to each other, I can find them
+\begin{equation*}
+\doubleunderline{
+    a_{\tau M} = \frac{\overrightarrow{a_M} \cdot \overrightarrow{V_M}}{|\overrightarrow{V_M}|} 
+    }
+\end{equation*}
+
+\begin{equation*}
+\doubleunderline{
+    a_{nM} = \frac{\overrightarrow{a_M} \times \overrightarrow{V_M}}{|\overrightarrow{V_M}|}
+    }
+\end{equation*}
+
+(3) Graph is available here\\
+Link : \url{https://www.geogebra.org/m/mxt7m7rn}
+\end{document}
